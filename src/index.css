@@ -1,0 +1,50 @@
+@import "./styles/welcome.css"; 
+@import "./styles/enter-destination.css";
+@import "./styles/destination-details.css";
+@import "./styles/final-details.css";
+
+html
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(31, 51, 94);
+}
+
+canvas {
+  background-color: rgb(31, 51, 94);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+
+#macbook {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60%;
+  height: auto;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 480px;
+}
+
+#map {
+  height: 25%;
+  width: 42.5%;
+  z-index: 2;
+  margin: auto;
+  align-items: center;
+  top: -130px;
+  left: 5px;
+}
+

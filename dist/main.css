@@ -1,4 +1,159 @@
+/*!******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/welcome.css ***!
+  \******************************************************************************************************/
+#mapping {
+    color:  white;
+    font-size: 68px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+}
+
+
+#matrix {
+    color:  rgb(71, 163, 71);
+    font-size: 100px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px rgb(71, 163, 71), 0 0 20px rgb(71, 163, 71), 0 0 25px rgb(71, 163, 71), 0 0 30px rgb(71, 163, 71), 0 0 35px rgb(71, 163, 71);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+}
+
+#intro { 
+    color:  white;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Source Serif Pro',serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 270px;
+}
+
+#get-started {
+	z-index: 2;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 300px;
+}
+
+#get-started > input {
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: solid green;
+    padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#get-started > input:hover {
+    border-radius: 12px;
+    background-color: black;
+    color: white;
+    border: solid green;
+    padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+/*!****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/enter-destination.css ***!
+  \****************************************************************************************************************/
+#destination-heading{
+    color:  white;
+    text-align: center;
+    top: 200px;
+    font-size: 68px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+}
+
+#domain-name { 
+    color:  white;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Source Serif Pro',serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 270px;
+}
+
+
+#get-destination {
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 475px;
+}
+
+
+/*!******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/destination-details.css ***!
+  \******************************************************************************************************************/
+
+/*!************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/final-details.css ***!
+  \************************************************************************************************************/
+
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
   \************************************************************************************************************************************/
+html body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(31, 51, 94);
+}
 
+canvas {
+  background-color: rgb(31, 51, 94);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+#macbook {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60%;
+  height: auto;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 480px;
+}
+
+#map {
+  height: 25%;
+  width: 42.5%;
+  z-index: 2;
+  margin: auto;
+  align-items: center;
+  top: -130px;
+  left: 5px;
+}
