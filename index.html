@@ -12,7 +12,7 @@
 <body>
     <canvas id="canvas"></canvas>
 
-    <div id="welcome" class="">
+    <div id="welcome" class="hidden">
         <h1 id="mapping">Mapping The</h1>
         <h1 id="matrix">MATRIX</h1>
         <p id="intro"> 
@@ -45,18 +45,26 @@
             </div>
         </div>
 
-        <div id="macbook-container" class="hidden">
+        <div id="macbook-container" class="">
             <img src="./assets/images/macbook-vector-4515471_960_720.webp" id="macbook" alt="">
         </div>
 
-        <div id="destination-details" class="hidden">
+        <div id="view-details">
+            <div id="destination-details" class="">
+                
 
-            <div>
-                <div id="map"></div>
+                <h1 id="destination"> </h1>
+
+
+                <div id="maps-container">
+                    <div id="map"></div>
+                </div>
+
+                <form id="next-destination" action="">
+                    <input id="next-button" type="submit" value="Next">
+                </form>
             </div>
-
         </div>
-
 
         
 

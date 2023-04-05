@@ -3,6 +3,7 @@ class Map{
         this.map = null;
         this.longitude = longitude
         this.latitude = latitude
+        this.marker = null;
       }
       initMap = function() {
         const options = {     
@@ -10,32 +11,17 @@ class Map{
                     center: { lat: this.latitude, lng: this.longitude }
                 }
         this.map = new google.maps.Map(document.getElementById('map'), options)
-        const marker = new google.maps.Marker({
+        this.marker = new google.maps.Marker({
                     position: { lat: this.latitude, lng: this.longitude },
                     map: this.map,
                     animation: google.maps.Animation.DROP
                 });
       };
+      updateMapAndMarkerPosition = function(lat, long) {
+            let newCenter = new google.maps.LatLng(lat, long);
+            this.map.setCenter(newCenter);
+            this.marker.setPosition(newCenter);
+      }
 }
 
 export default Map
-
-// function initMap() {
-//     var options = {     
-//         zoom: 10,
-//         center: { lat: 33.933241, lng: -84.340288 }
-//     }
-//     var map = new google.maps.Map(document.getElementById('map'), options);
-//     var marker = new google.maps.Marker({
-//         position: { lat: 33.933241, lng: -84.340288 },
-//         map: map
-//     });
-// }
-
-
-//     }
-//     loadMap(city, state){
-//         let script = document.createElement('script')
-//         script.src = ""
-//         script.defer = true
-//         document.head.appendChild(script)

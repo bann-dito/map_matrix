@@ -1,0 +1,28 @@
+#destination {
+    color:  white;
+    font-size: 68px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 250px;
+}
+
+#next-destination {
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 475px;
+}
+
+#next-button {
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: solid green;
+    padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}

@@ -1,33 +1,27 @@
 import Traceroute from "./traceroute";
 import Location from "./location";
 import Map from "./maps";
+import { async } from "regenerator-runtime";
 
 console.log('this thing on?')
 
 
 // I need an event listener for main page when get started is clicked
 //done
-
 // When get started is clicked it should hide the main page elements and unhide the next page elements
 //done
-
 // Should listen for click and pass user input
 //done
-
 // On user input pass the result to the traceroute
 //done
-
 //iterate through the dns to grab each hop
-//not done, line 80
-
+//done
 //for each each hop pass the the IP to the geo location
-//
-
+//done
 //pass geo location longitude and latitude to the maps API
-
-
+//done
 //show the user google maps with laptop
-
+//done
 
 const getStarted = document.getElementById("get-started")
 
@@ -40,7 +34,6 @@ getStarted.addEventListener('click', (event) => {
     welcomePage.classList.add('hidden')
     enterDestination.classList.remove('hidden')
     macbook.classList.remove('hidden')
-    // setInterval(draw, 33);
 })
 
 
@@ -58,7 +51,7 @@ letsGo.addEventListener('click', (event) => {
 
     console.log(domainInput)
     routes()
-    //routes is on line 80
+
 })
 
 
@@ -73,53 +66,64 @@ const traceRoute = new Traceroute
 //     console.log(data.response.hops)
 // })
 
-//hard coding IP addresses for now
-// let ip = ["149.56.56.62", "10.98.243.143", "10.34.49.68", "10.74.9.186", "10.200.3.133", "198.32.118.126","104.244.42.65" ]
-let ip = []
+//hard coding IP addresses for now so i dont continue to call the API and hit the limit
+let ip_collection = ["64.33.146.250", "69.4.127.37", "208.115.136.115", "157.240.33.164", "147.75.208.217", "173.252.67.1", "157.240.249.35" ]
 //this function needs to check if the IP is 0.0.0.0
-//commenting out for now until I can figure out how to pull IPs from the object
-const routes = async function(){
-    let domain = domainInput
-    const route = await traceRoute.getRoute(domain)
-};
+//function is grabbing each IP that is not 0.0.0.0 and adds it to the IP collection
+// const routes = async function(){
+//     let domain = domainInput
+//     const route = traceRoute.getRoute(domain)
+//     route.then((data) => {
+//         console.log(data.response.hops, "hops console log")
+//         for (let number in data.response.hops) {
+//             if (data.response.hops[number].ip !== "0.0.0.0") {
+//                 ip_collection.push(data.response.hops[number].ip)
+//                 console.log(ip_collection)
+//             }
+//         }
+//     })
+// };
 
 
 
 //working API call to gather IP geo location details
 const locate = new Location
 
+let listCities = ["Durand","Mather","Redwood City", "Tel Aviv", "Chicago", "Chicago"  ]
+let listLongitude = [-91.9339, -90.3118, -97.822, -79.3716,-87.6521, -87.6318, ]
+let listLatitude = [44.6311, 44.1461, 37.751, 43.6319, 41.8482, 41.8874, ]
+
+window.listLongitude = listLongitude
+window.listLatitude = listLatitude
+
+function locateDetails(){
+    for (let i=0 ; i < ip_collection.length; i++){
+        setTimeout(() => {
+            let geolocation = locate.getLocation(ip_collection[i])
+            geolocation.then((data) => {
+                console.log(data.city)
+                console.log(data.latitude)
+                console.log(data.longitude)
+                console.log(data.ip_address)
+                console.log(data)
+            })
+        },i * 1500)
+    }
+} 
+
+window.locateDetails = locateDetails
 
 
-const geolocation = locate.getLocation("166.171.248.255")
-
-
-
-// async function getLongitude(){
-//     geolocation.then((data) =>{
-//         return data.longitude
-//     })
-// }
-
-// getLongitude()
-
-
-// geolocation.then((data) =>{
-//     getLatitude = data.latitude
-//     getLongitude = data.longitude
-//     console.log(getLatitude)
-//     console.log(getLongitude)
-
-// })
-
-//Google maps constructor function
-//must pass latitude, then longitude to constructor
-let map = new Map(37.7749, -122.4194)
+// Google maps constructor function
+// must pass latitude, then longitude to constructor
+let map = new Map(listLatitude[0], listLongitude[0])
 map.initMap
 
-//saving a screipt html element to a variable called script
+
+// saving a screipt html element to a variable called script
 let script = document.createElement('script')
 //setting src html tag equal to my google API Call
-script.src = "https://maps.googleapis.com/maps/api/js?key=ADD_API_KEY&callback=map.initMap"
+script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA8dDHNlJDeFT4o2PjlkPzCutCeKnOmAJY&callback=map.initMap"
 //setting async true on our HTML element
 script.async = true
 //adding html element to our head section of our HTML document
@@ -129,8 +133,17 @@ window.map = map
 
 
 
-
-
+let i = 0
+let destinationH1 = document.getElementById("destination")
+destinationH1.innerHTML = `You've arrived at ${listCities[i]}`
+const nextButton = document.getElementById("next-button")
+nextButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    i += 1;
+    destinationH1.innerHTML = `You've arrived at ${listCities[i]}`
+    map.updateMapAndMarkerPosition(listLatitude[i], listLongitude[i])
+    buildMaps()
+})
 
 
 // gathers canvas
@@ -198,3 +211,40 @@ canvas.addEventListener("mouseover", function(event){
 // }
 
 // window.fetchData = fetchData
+
+
+
+// let map;
+// let marker
+// const initMap = function() {
+//     const options = {     
+//             zoom: 11,
+//             center: { lat: listLatitude[0], lng: listLongitude[0]  }
+//         }
+//     map = new google.maps.Map(document.getElementById('map'), options)
+//     marker = new google.maps.Marker({
+//             position: { lat: listLatitude[0], lng: listLongitude[0]},
+//             map: map,
+//             animation: google.maps.Animation.DROP
+//         });
+// }
+
+// function updateMapAndMarkerPosition() {
+//     let newCenter = new google.maps.LatLng(listLatitude[1], listLongitude[1]);
+//     map.setCenter(newCenter);
+//     marker.setPosition(newCenter);
+// }
+
+// //saving a screipt html element to a variable called script
+// let script = document.createElement('script')
+// //setting src html tag equal to my google API Call
+// script.src = "https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
+// //setting async true on our HTML element
+// script.async = true
+// //adding html element to our head section of our HTML document
+// document.head.appendChild(script)
+
+// window.map = map
+// window.initMap = initMap
+// window.updateMapAndMarkerPosition = updateMapAndMarkerPosition
+
