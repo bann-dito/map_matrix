@@ -123,7 +123,7 @@ map.initMap
 // saving a screipt html element to a variable called script
 let script = document.createElement('script')
 //setting src html tag equal to my google API Call
-script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA8dDHNlJDeFT4o2PjlkPzCutCeKnOmAJY&callback=map.initMap"
+script.src = "https://maps.googleapis.com/maps/api/js?key=&callback=map.initMap"
 //setting async true on our HTML element
 script.async = true
 //adding html element to our head section of our HTML document
