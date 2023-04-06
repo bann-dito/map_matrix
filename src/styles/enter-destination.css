@@ -1,36 +1,80 @@
 #destination-heading{
     color:  white;
-    text-align: center;
-    top: 200px;
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
+    top: 25%;
+    left: 50%;
+    position: absolute;
     z-index: 2;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 250px;
+    transform: translate(-50%, -50%);
 }
 
-#domain-name { 
+#domain-name{
     color:  white;
-    z-index: 2;
     text-align: center;
     font-family: 'Source Serif Pro',serif;
     font-size: 25px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 270px;
+    top: 30%;
+    left: 50%;
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, -50%);
 }
 
 
-#get-destination {
+#domain {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index: 5;
+    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#domain:focus {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    background-color: black;
+    color: white;
+    border: solid green;
+    padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#domain-submit{
+    top: 50%;
+    left: 67%;
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: solid green;
+    padding: 10px 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#domain-submit:hover {
+    top: 50%;
+    left: 67%;
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    background-color: black;
+    color: white;
+    border: solid green;
     font-family: 'Roboto', sans-serif;
 }
 

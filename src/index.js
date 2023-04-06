@@ -27,8 +27,8 @@ const getStarted = document.getElementById("get-started")
 
 getStarted.addEventListener('click', (event) => {
     event.preventDefault();
-    const welcomePage = document.getElementById("welcome")
-    const enterDestination = document.getElementById("enter-destination")
+    const welcomePage = document.getElementById("welcome-container")
+    const enterDestination = document.getElementById("destinations")
     const macbook = document.getElementById("macbook-container")
 
     welcomePage.classList.add('hidden')
@@ -38,7 +38,7 @@ getStarted.addEventListener('click', (event) => {
 
 
 
-const letsGo = document.getElementById("get-destination")
+const letsGo = document.getElementById("domain-submit")
 let domainInput;
 letsGo.addEventListener('click', (event) => {
     event.preventDefault();
@@ -46,17 +46,15 @@ letsGo.addEventListener('click', (event) => {
     const destinationDetails = document.getElementById("destination-details")
     enterDestination.classList.add('hidden')
     destinationDetails.classList.remove('hidden')
-
     domainInput = document.getElementById("domain").value
-
+    
     console.log(domainInput)
-    routes()
-
+    routes(domainInput)
 })
 
 
 
-
+window.domainInput = domainInput
 
 const traceRoute = new Traceroute
 
@@ -67,45 +65,72 @@ const traceRoute = new Traceroute
 // })
 
 //hard coding IP addresses for now so i dont continue to call the API and hit the limit
-let ip_collection = ["64.33.146.250", "69.4.127.37", "208.115.136.115", "157.240.33.164", "147.75.208.217", "173.252.67.1", "157.240.249.35" ]
-//this function needs to check if the IP is 0.0.0.0
-//function is grabbing each IP that is not 0.0.0.0 and adds it to the IP collection
-// const routes = async function(){
-//     let domain = domainInput
-//     const route = traceRoute.getRoute(domain)
-//     route.then((data) => {
-//         console.log(data.response.hops, "hops console log")
-//         for (let number in data.response.hops) {
-//             if (data.response.hops[number].ip !== "0.0.0.0") {
-//                 ip_collection.push(data.response.hops[number].ip)
-//                 console.log(ip_collection)
-//             }
-//         }
-//     })
-// };
+// let ip_collection = ["64.33.146.250", "69.4.127.37", "208.115.136.115", "157.240.33.164", "147.75.208.217", "173.252.67.1", "157.240.249.35" ]
+let ip_collection = []
+// this function needs to check if the IP is 0.0.0.0
+// function is grabbing each IP that is not 0.0.0.0 and adds it to the IP collection
+// this function is working!!!!
+const routes = function(domain){
+    const route = traceRoute.getRoute(domain)
+    route.then((data) => {
+        console.log(data.response.hops, "hops console log")
+        for (let number in data.response.hops) {
+            if (data.response.hops[number].ip !== "0.0.0.0" && data.response.hops[number].ip !== "*") {
+                ip_collection.push(data.response.hops[number].ip)
+                console.log(ip_collection)
+            }
+        }
+        locateDetails()
+    })    
+};
 
 
+
+//this is for testing while placing google maps in the correct CSS position
+
+// const routes = function(){
+//     locateDetails()
+// }
+
+
+
+
+window.ip_collection = ip_collection
 
 //working API call to gather IP geo location details
 const locate = new Location
 
-let listCities = ["Durand","Mather","Redwood City", "Tel Aviv", "Chicago", "Chicago"  ]
-let listLongitude = [-91.9339, -90.3118, -97.822, -79.3716,-87.6521, -87.6318, ]
-let listLatitude = [44.6311, 44.1461, 37.751, 43.6319, 41.8482, 41.8874, ]
+// let listCities = ["Durand","Mather","Redwood City", "Tel Aviv", "Chicago", "Chicago"  ]
+// let listLongitude = [-91.9339, -90.3118, -97.822, -79.3716,-87.6521, -87.6318, ]
+// let listLatitude = [44.6311, 44.1461, 37.751, 43.6319, 41.8482, 41.8874, ]
 
+let listCities = []
+let listLongitude = []
+let listLatitude = []
+
+window.listCities = listCities
 window.listLongitude = listLongitude
 window.listLatitude = listLatitude
-
+//this function is working
 function locateDetails(){
     for (let i=0 ; i < ip_collection.length; i++){
         setTimeout(() => {
             let geolocation = locate.getLocation(ip_collection[i])
             geolocation.then((data) => {
-                console.log(data.city)
-                console.log(data.latitude)
-                console.log(data.longitude)
-                console.log(data.ip_address)
-                console.log(data)
+                if (!listLongitude.includes(data.longitude)){
+                    listCities.push(data.city)
+                    listLongitude.push(data.longitude)
+                    listLatitude.push(data.latitude)
+                    console.log(data.city)
+                    console.log(data.latitude)
+                    console.log(data.longitude)
+                    console.log(data.ip_address)
+                    console.log(data)
+                    if ( i === 0 ){
+                        destinationH1.innerHTML = `You've arrive at ${listCities[0]}`
+                        makeMap()
+                    }
+                }
             })
         },i * 1500)
     }
@@ -116,90 +141,145 @@ window.locateDetails = locateDetails
 
 // Google maps constructor function
 // must pass latitude, then longitude to constructor
-let map = new Map(listLatitude[0], listLongitude[0])
-map.initMap
+//this function is working!!!
+let map;
+function makeMap(){
+    map = new Map(listLatitude[0], listLongitude[0])
+    map.initMap
+    let script = document.createElement('script')
+    //setting src html tag equal to my google API Call
+    fetch("http://localhost:5000/goog").then(res => {
+        return res.text()
+    }).then(key => {
+        console.log(key)
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=map.initMap`
+    })
+    //setting async true on our HTML element
+    script.async = true
+    //adding html element to our head section of our HTML document
+    document.head.appendChild(script)
+    
+    window.map = map
+}
+
 
 
 // saving a screipt html element to a variable called script
-let script = document.createElement('script')
-//setting src html tag equal to my google API Call
-script.src = "https://maps.googleapis.com/maps/api/js?key=&callback=map.initMap"
-//setting async true on our HTML element
-script.async = true
-//adding html element to our head section of our HTML document
-document.head.appendChild(script)
-
-window.map = map
 
 
-
+//this is working!!!
 let i = 0
 let destinationH1 = document.getElementById("destination")
 destinationH1.innerHTML = `You've arrived at ${listCities[i]}`
 const nextButton = document.getElementById("next-button")
-nextButton.addEventListener('click', (event) => {
+const onNextClick = function(event){
     event.preventDefault();
-    i += 1;
+    i +=1;
     destinationH1.innerHTML = `You've arrived at ${listCities[i]}`
     map.updateMapAndMarkerPosition(listLatitude[i], listLongitude[i])
-    buildMaps()
-})
+    if ( i === listLatitude.length){
+        destinationH1.innerHTML = "Your Mapped Matrix"
+        map.addMarkers(listLatitude, listLongitude)
+        nextButton.removeEventListener('click', onNextClick)
+    }
+}
+nextButton.addEventListener('click', onNextClick)
+
+// nextButton.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     i += 1;
+//     destinationH1.innerHTML = `You've arrived at ${listCities[i]}`
+//     map.updateMapAndMarkerPosition(listLatitude[i], listLongitude[i])
+//     if (i === listLatitude.length) {
+//         map.addMarkers(listLatitude, listLongitude)
+//     }
+// })
 
 
-// gathers canvas
+//set canvas to to HTML canvas element
 const canvas = document.getElementById("canvas");
-//sets ctx
 const ctx = canvas.getContext("2d");
+//set canvas to the current window width and height
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+//color and font style
 ctx.fillStyle = "#0F0";
 ctx.font = "16px monospace";
 
-//resizes canvas as window changes
-function resizeCanvas(){
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-}
-
-//listens if window is resized, runs callback
-window.addEventListener('resize', resizeCanvas)
-resizeCanvas();
 
 
-// Set up the characters and animation loop
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const charArr = chars.split("");
+//number of columns needed based on the width of the window
 const columns = canvas.width / 16;
 let drops = [];
+//set each element in column equal to 1
 for (let i = 0; i < columns; i++) {
     drops[i] = 1;
 }
 
 
 function draw() {
+    //set canvas to semi-transparent black
     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    //draws rectangle based on canvas width and heigh that we set earlier
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    //set fillstyle to green
     ctx.fillStyle = "#0F0";
     for (let i = 0; i < drops.length; i++) {
+        //sets char index to hold a random index up to the char Array length
         const charIndex = Math.floor(Math.random() * charArr.length);
+        //set char to the random char
         const char = charArr[charIndex];
+        //fills text
         ctx.fillText(char, i * 16, drops[i] * 16);
+        //resets drop back to 0, otherwise increment
         if (drops[i] * 16 > canvas.height && Math.random() > 0.95) {
             drops[i] = 0;
         }
         drops[i]++;
     }
 }
+
+//resizes the canvas based on the state of the window and height
+function resizeCanvas(){
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    const columns = canvas.width / 16
+    drops = [];
+    for (let i = 0; i < columns; i++) {
+        drops[i] = 1
+    }
+}
+
+//listening for window resize, runs callback if it does
+window.addEventListener('resize', resizeCanvas)
+resizeCanvas();
+
+
+
+
+canvas.addEventListener("mousemove", function(event){
+    const mouseX = event.clientX - canvas.offsetLeft;
+    const mouseY = event.clientY - canvas.offsetTop;
+
+
+    const column = Math.floor(mouseX / 16);
+    const row = Math.floor(mouseY / 16);
+
+    ctx.fillStyle = "#ff3333";
+    for (let i = column - 1; i <= column + 1; i++) {
+        for (let j = row - 1; j <= row + 1; j++) {
+            if (i >= 0 && i < columns && j >= 0 && j < drops.length) {
+                ctx.fillText(charArr[Math.floor(Math.random() * charArr.length)], i * 16, drops[j] * 16);
+            }  
+        }
+    }
+});
+
+
+//draws canvas
 setInterval(draw, 33);
-
-canvas.addEventListener("mouseover", function(event){
-    let mouseX = event.clientX
-    let mouseY = event.clientY
-    
-})
-
-
-
 
 //example of calling api through proxy server
 // const fetchData = async() => {
