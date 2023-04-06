@@ -148,7 +148,7 @@ function makeMap(){
     map.initMap
     let script = document.createElement('script')
     //setting src html tag equal to my google API Call
-    fetch("http://localhost:5000/goog").then(res => {
+    fetch("https://mapping-the-matrix.onrender.com/goog").then(res => {
         return res.text()
     }).then(key => {
         console.log(key)
