@@ -2,6 +2,7 @@
 @import "./styles/enter-destination.css";
 @import "./styles/destination-details.css";
 @import "./styles/final-details.css";
+@import "./styles/header.css";
 
 html
 body {
@@ -45,23 +46,3 @@ canvas {
   position: absolute;
   transform: translate(-50%, -50%);
 }
-
-
-#github{
-  z-index: 2;
-  position: absolute;
-  left: 85%;
-  top: 2.8%;
-  height: 3.5%;
-  width: 2%;
-}
-
-#linkedin{
-  z-index: 2;
-  position: absolute;
-  height: 3%;
-  width: 2%;
-  left: 90%;
-  top: 3%;
-}
-

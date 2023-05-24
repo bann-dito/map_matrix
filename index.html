@@ -11,25 +11,24 @@
     <script src="./dist/main.js" defer></script>
 </head>
 <body>
-    
-    <div>
-        <a href="https://github.com/bann-dito"><img id="github"src="./assets/images/github.png"></a>
-        <a href="https://www.linkedin.com/in/eduardobacsierra/" ><img id="linkedin"src="./assets/images/linkedin.png"></a>
-    </div>
-    
     <canvas id="canvas"></canvas>
+    
+    <header id="nav-links">
+        <a class="link" href="https://github.com/bann-dito" target="_blank"><img id="github"src="./assets/images/github.png"></a>
+        <a class="link" href="https://www.linkedin.com/in/eduardobacsierra/" target="_blank" ><img id="linkedin"src="./assets/images/linkedin.png"></a>
+    </header>
+    
     <div id="welcome-container" class="">
-        <h1 id="mapping">Mapping The</h1>
-        <h1 id="matrix">MATRIX</h1>
-        <p id="intro"> 
+        <h1 id="mapping" class="welcome-container-item">Mapping The</h1>
+        <h1 id="matrix" class="welcome-container-item">MATRIX</h1>
+        <p id="intro" class="welcome-container-item"> 
             Welcome to Mapping The Matrix. This demo will take you on a journey of how our 
             computers travel across the internet and arrive at its final destination.
         </p>
         
-        <form id="get-started">
-            <input type="submit" value="Get Started">
+        <form class="welcome-container-item">
+            <input id="get-started" type="submit" value="Get Started">
         </form>
-        
     </div>
 
     <div id="macbook-container" class="hidden">
@@ -51,8 +50,6 @@
                 <input id="domain-submit" type="submit" value="Lets Go!">
               </form>
 
-              <div id="macbook-container" class="">
-            </div>
             
             </div>
         </div>
@@ -61,34 +58,15 @@
           
           <div id="view-details">
               <div id="destination-details" class="hidden">
-                  
-                
                 <h1 id="destination"> </h1>
-                
-                
                 <div id="maps-container" class="">
                     <div id="map"></div>
                 </div>
-                
                 <form id="next-destination" action="">
                     <input id="next-button" type="submit" value="Next">
                 </form>
             </div>
         </div>
-        
-        
-        
-        
-        
     </div>
-    
-    
-    
-
-
-
-
-
-
 </body>
 </html>
