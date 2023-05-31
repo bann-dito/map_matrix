@@ -40,9 +40,7 @@
                     Enter a domain name below to begin your journey of mapping the matrix.
                 </p>
                 <form id="get-destination" action="">
-                    <label>
-                        <input id="domain" type="text" placeholder="ex. facebook.com" value="">
-                    </label>
+                    <input id="domain" type="text" placeholder="ex. facebook.com" required>
                     <input id="domain-submit" type="submit" value="Lets Go!">
                 </form>
                 
@@ -50,8 +48,8 @@
             </div>
         </div>
         
-        <div id="view-details">
-            <div id="destination-details" class="hidden">
+        <div id="destination-details" class="destination-details hidden">
+            <div class="view-details">
                 <h1 id="destination"> </h1>
                 <div id="maps-container" class="">
                     <div id="map"></div>
