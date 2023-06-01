@@ -31,17 +31,92 @@ Mapping The Matrix is a project that visualizes your IP packet through the physi
 
 ## Code Highlights
 
-### Matrix Waterfall Canvas
+### Matrix Waterfall
+Using Canvas, I was able to draw a rain affect as a background. Using a string of characters I want to use, I split them into an Array of single characters.
+In the Draw function I set the entire canvas to a semi transparent black color that provides the trailing affect while only filling the random character from the character array. The drops array keeps the position of the current drop and if the reset condition is met, is set back 0.
 ```js
-placeholder
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+ctx.fillStyle = "#0F0";
+ctx.font = "16px monospace";
+
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const charArr = chars.split("");
+const columns = canvas.width / 16;
+let drops = [];
+for (let i = 0; i < columns; i++) {
+    drops[i] = 1;
+}
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0F0";
+    for (let i = 0; i < drops.length; i++) {
+        const charIndex = Math.floor(Math.random() * charArr.length);
+        const char = charArr[charIndex];
+        ctx.fillText(char, i * 16, drops[i] * 16);
+        if (drops[i] * 16 > canvas.height && Math.random() > 0.95) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
 ```
 
 ### Google Maps Class
-```js
-placeholder
-```
+In this Map class I utilize Google Maps to create a map with a provided Latitude and Longitude. When ready I can call the initMap function to create the map. The updateMapAndMarkerPosition function is used when the map needs present the new location visited. The addMarkers function is called at the end when markers for each location need to be displayed and the map re-centered
 
-### User Interaction
 ```js
-placeholder
+class Map{
+  constructor(latitude, longitude) {
+      this.map = null;
+      this.longitude = longitude
+      this.latitude = latitude
+      this.markers = [];
+  }
+
+  initMap = function() {
+    const options = {     
+        zoom: 11,
+        center: { lat: this.latitude, lng: this.longitude }
+    }
+    this.map = new google.maps.Map(document.getElementById('map'), options)
+    this.markers.push(new google.maps.Marker({
+        position: { lat: this.latitude, lng: this.longitude },
+        map: this.map,
+        animation: google.maps.Animation.DROP
+      }));
+    };
+    
+    updateMapAndMarkerPosition = function(lat, long) {
+      if (!isNaN(lat) && !isNaN(long)) {
+        let newCenter = new google.maps.LatLng(lat, long);
+        this.map.setCenter(newCenter);
+        this.markers[0].setPosition(newCenter);
+      }
+    }
+    
+    addMarkers = function(lat, long){
+      this.markers.forEach(marker => marker.setMap(null))
+      this.markers = []
+      const bounds = new google.maps.LatLngBounds();
+      for (let i = 0; i < lat.length; i++){
+        const marker = new google.maps.Marker({
+          position: { lat: lat[i], lng: long[i] },
+          map: this.map,
+          label: (i + 1).toString()
+        });
+        this.markers.push(marker)
+        bounds.extend(marker.getPosition())
+      }
+      this.map.fitBounds(bounds)
+    }
+}
+
+export default Map
 ```
