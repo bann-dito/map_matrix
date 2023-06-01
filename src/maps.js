@@ -15,7 +15,8 @@ class Map{
       );
       if (!scriptExists){
         const script = document.createElement('script')
-        fetch("http://localhost:5001/goog")
+        // fetch("http://localhost:5001/goog")
+        fetch("https://mapping-the-matrix.onrender.com/goog")
           .then((res) => res.text())
           .then((key) => {
             script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=map.initMap`;
