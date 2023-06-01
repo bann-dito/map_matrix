@@ -202,12 +202,13 @@
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    margin: 0% 0% 0.2em 0%;
-    z-index: 2;
+    margin: 0% 0% 2.2em 0%;
+    z-index: 3;
 }
 
 #next-destination{
-    z-index: 2;
+    z-index: 3;
+    padding-left: 56em;
 }
 
 #next-button {
@@ -226,6 +227,30 @@
     color: white;
     border: solid green;
     font-family: 'Roboto', sans-serif;
+}
+
+#map {
+    height: 436px;
+    width: 678px;
+    align-items: center;
+    position: absolute;
+    border-radius: 8px;
+    z-index: 2;
+    margin: 107px 0px 0px 14px;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 /*!************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/final-details.css ***!
@@ -274,11 +299,4 @@ canvas {
 
 .hidden {
   display: none;
-}
-
-#map {
-  height: 32%;
-  width: 27%;
-  align-items: center;
-  position: absolute;
 }
