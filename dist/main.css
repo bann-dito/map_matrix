@@ -75,6 +75,7 @@
 
 .enter-destination{
     z-index: 2;
+    margin-top: 10em;
 }
 
 #destination-instructions{
@@ -117,7 +118,8 @@
     width: 90%;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: 24em;
+    margin-left: 29em;
+    z-index: 3;
 }
 
 #domain {
@@ -158,22 +160,21 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.macbook-container{
+/* .macbook-container{
     display: flex;
     align-items: center;
     flex-direction: column;
+} */
+
+#macbook-destination-details {
+    z-index: 1;
+    /* margin-top: -42.5vh; */
 }
 
-.macbook {
-    /* top: 52%;
-    left: 50%;
-    height: auto;
-    width: auto;
-    position: absolute;
-    transform: translate(-50%, -50%); */
+#macbook-enter-details{
     z-index: 1;
-    margin-top: -42.5vh;
-  }
+    margin-top: -16em;
+} 
 
 /*!******************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/destination-details.css ***!
@@ -194,6 +195,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 5em;
 }
 
 
@@ -202,13 +204,12 @@
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    margin: 0% 0% 2.2em 0%;
     z-index: 3;
 }
 
 #next-destination{
     z-index: 3;
-    padding-left: 56em;
+    margin-top: 15em;
 }
 
 #next-button {
@@ -230,13 +231,17 @@
 }
 
 #map {
-    height: 436px;
+    height: 424px;
     width: 678px;
-    align-items: center;
     position: absolute;
     border-radius: 8px;
     z-index: 2;
-    margin: 107px 0px 0px 14px;
+    margin: 7.5em 3em 0 0;
+}
+
+.parent-macbook{
+    display: flex;
+    justify-content: center;
 }
 
 .spinner {
