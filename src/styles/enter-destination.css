@@ -9,6 +9,7 @@
 
 .enter-destination{
     z-index: 2;
+    margin-top: 10em;
 }
 
 #destination-instructions{
@@ -51,7 +52,8 @@
     width: 90%;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: 24em;
+    margin-left: 29em;
+    z-index: 3;
 }
 
 #domain {
@@ -92,19 +94,18 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.macbook-container{
+/* .macbook-container{
     display: flex;
     align-items: center;
     flex-direction: column;
+} */
+
+#macbook-destination-details {
+    z-index: 1;
+    /* margin-top: -42.5vh; */
 }
 
-.macbook {
-    /* top: 52%;
-    left: 50%;
-    height: auto;
-    width: auto;
-    position: absolute;
-    transform: translate(-50%, -50%); */
+#macbook-enter-details{
     z-index: 1;
-    margin-top: -42.5vh;
-  }
+    margin-top: -16em;
+} 

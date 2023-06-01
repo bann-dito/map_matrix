@@ -5,7 +5,7 @@ import { async } from "regenerator-runtime";
 
 //Sets getStarted to the get-started HTML elements
 const getStarted = document.getElementById("get-started")
-const macbook = document.getElementById("macbook-container")
+// const macbook = document.getElementById("macbook-container")
 
 //Listens for a click on the get-started button
 //To summ. this hides the homepage and shows the enter destination container
@@ -21,7 +21,7 @@ getStarted.addEventListener('click', (event) => {
     //Rmoeves hidden from the HTML container destination
     enterDestination.classList.remove('hidden')
     //Removes hidden from the HTML container macbook-container
-    macbook.classList.remove('hidden')
+    // macbook.classList.remove('hidden')
 })
 
 
@@ -42,7 +42,7 @@ letsGo.addEventListener('click', (event) => {
     const enterDestination = document.getElementById("enter-destination")
     // const destinationDetails = document.getElementById("destination-details")
     enterDestination.classList.add('hidden')
-    macbook.classList.add('hidden')
+    // macbook.classList.add('hidden')
     spinner.classList.remove('hidden')
     // destinationDetails.classList.remove('hidden')
     // domainInput = document.getElementById("domain").value
@@ -144,7 +144,7 @@ function locateDetails(){
                 if ( listCities.length >= 1 ){
                     spinner.classList.add('hidden')
                     destinationDetails.classList.remove('hidden')
-                    macbook.classList.remove('hidden')
+                    // macbook.classList.remove('hidden')
                     destinationH1.innerHTML = `You've arrive at ${listCities[0]}`
                     makeMap()
                 }
