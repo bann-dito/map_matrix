@@ -32,7 +32,16 @@ Mapping The Matrix is a project that visualizes your IP packet through the physi
 ## Code Highlights
 
 ### Matrix Waterfall Canvas
+```js
+placeholder
+```
 
 ### Google Maps Class
+```js
+placeholder
+```
 
 ### User Interaction
+```js
+placeholder
+```
