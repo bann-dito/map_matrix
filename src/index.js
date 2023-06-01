@@ -56,7 +56,6 @@ letsGo.addEventListener('click', (event) => {
 //makes a new traceroute instance
 const traceRoute = new Traceroute
 //array of collected IP from the routes function
-let ipTest = ['0.0.0.0', '0.0.0.0', 'ae2.3612.edge6.Washington12.level3.net', '4.68.38.6', '129.134.99.222', '173.252.67.63']
 let ip_collection = []
 
 
@@ -77,13 +76,13 @@ const validIP = function(ip){
 }
 
 
-
 //Summarize, takes domain input from the Lets go event listener
 //calls the class function getRoute and passes the domain input
 //get route is an API fetch and passes each hop into 
 //calls the locate details function when done
 const routes = function(domain){
     const route = traceRoute.getRoute(domain)
+    // const route = traceroute(domain)
     route.then((data) => {
         // console.log(data.response.hops, "hops console log")
         for (let number in data.response.hops) {
@@ -129,28 +128,27 @@ function locateDetails(){
         // setTimeout(() => {
             let geolocation = locate.getLocation(ip_collection[i])
             geolocation.then((data) => {
-                console.log(data)
-                console.log(data.loc)
                 let location = data.loc.split(',')
-                listCities.push(data.city)
-                listLatitude.push(parseFloat(location[0]))
-                listLongitude.push(parseFloat(location[1]))
-                console.log(location)
-                
+                if (!listLatitude.includes(parseFloat(location[0]))){
+                    listCities.push(data.city)
+                    listLatitude.push(parseFloat(location[0]))
+                    listLongitude.push(parseFloat(location[1]))
+                    console.log(location)
+                }
                 // if (!listLongitude.includes(data.longitude)){
                 //     listCities.push(data.city)
                 //     listLongitude.push(data.longitude)
                 //     listLatitude.push(data.latitude)
                 //     console.log(ip_collection)
                 //     console.log(listCities)
-                    if ( listCities.length === ip_collection.length ){
-                        spinner.classList.add('hidden')
-                        destinationDetails.classList.remove('hidden')
-                        macbook.classList.remove('hidden')
-                        destinationH1.innerHTML = `You've arrive at ${listCities[0]}`
-                        makeMap()
-                    }
-                // }
+                if ( listCities.length >= 1 ){
+                    spinner.classList.add('hidden')
+                    destinationDetails.classList.remove('hidden')
+                    macbook.classList.remove('hidden')
+                    destinationH1.innerHTML = `You've arrive at ${listCities[0]}`
+                    makeMap()
+                }
+        
             })
         // },i * 1500)
     }
