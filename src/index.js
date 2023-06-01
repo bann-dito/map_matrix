@@ -15,7 +15,7 @@ getStarted.addEventListener('click', (event) => {
     //saves the HTML container welcome container
     const welcomePage = document.getElementById("welcome-container")
     //saves the HTNL container destinations
-    const enterDestination = document.getElementById("destinations")
+    const enterDestination = document.getElementById("enter-destination")
     //Adds hidden to the HTML container 
     welcomePage.classList.add('hidden')
     //Rmoeves hidden from the HTML container destination
@@ -26,7 +26,6 @@ getStarted.addEventListener('click', (event) => {
 
 
 const letsGo = document.getElementById("domain-submit")
-let domainInput;
 
 //Summarize, this function waits for this for lets go to be clicked
 //Hides HTML elements, shows the destinations details container
@@ -34,6 +33,11 @@ let domainInput;
 const spinner = document.getElementById("spinner")
 
 letsGo.addEventListener('click', (event) => {
+    const domainInput = document.getElementById("domain").value
+    if (domainInput === ""){
+        alert("Please enter a domain name, i.e. google.com, facebook.com, twitter.com, etc.")
+        return
+    }
     event.preventDefault();
     const enterDestination = document.getElementById("enter-destination")
     // const destinationDetails = document.getElementById("destination-details")
@@ -41,7 +45,7 @@ letsGo.addEventListener('click', (event) => {
     macbook.classList.add('hidden')
     spinner.classList.remove('hidden')
     // destinationDetails.classList.remove('hidden')
-    domainInput = document.getElementById("domain").value
+    // domainInput = document.getElementById("domain").value
     
     // console.log(domainInput)
     routes(domainInput)
