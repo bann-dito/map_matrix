@@ -15,7 +15,7 @@ getStarted.addEventListener('click', (event) => {
     //saves the HTML container welcome container
     const welcomePage = document.getElementById("welcome-container")
     //saves the HTNL container destinations
-    const enterDestination = document.getElementById("enter-destination")
+    const enterDestination = document.getElementById("destinations")
     //Adds hidden to the HTML container 
     welcomePage.classList.add('hidden')
     //Rmoeves hidden from the HTML container destination
