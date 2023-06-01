@@ -4,6 +4,29 @@ class Map{
       this.longitude = longitude
       this.latitude = latitude
       this.markers = [];
+      this.googleMapsLoaded = false;
+  }
+
+
+  loadMapsApi = function() {
+    if (!this.googleMapsLoaded){
+      const scriptExists = document.querySelector(
+        'script[src^="https://maps.googleapis.com/maps/api/js?key="]'
+      );
+      if (!scriptExists){
+        const script = document.createElement('script')
+        fetch("http://localhost:5001/goog")
+          .then((res) => res.text())
+          .then((key) => {
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=map.initMap`;
+            document.head.appendChild(script);
+            this.googleMapsLoaded = true;
+          });
+      } else {
+        this.initMap();
+        this.googleMapsLoaded = true
+      }
+    }
   }
 
   initMap = function() {
