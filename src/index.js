@@ -128,12 +128,14 @@ function locateDetails(){
         // setTimeout(() => {
             let geolocation = locate.getLocation(ip_collection[i])
             geolocation.then((data) => {
-                let location = data.loc.split(',')
-                if (!listLatitude.includes(parseFloat(location[0]))){
-                    listCities.push(data.city)
-                    listLatitude.push(parseFloat(location[0]))
-                    listLongitude.push(parseFloat(location[1]))
-                    console.log(location)
+                if (data.loc){
+                    let location = data.loc.split(',')
+                    if (!listLatitude.includes(parseFloat(location[0]))){
+                        listCities.push(data.city)
+                        listLatitude.push(parseFloat(location[0]))
+                        listLongitude.push(parseFloat(location[1]))
+                        console.log(location)
+                    }
                 }
                 // if (!listLongitude.includes(data.longitude)){
                 //     listCities.push(data.city)
@@ -168,20 +170,23 @@ function locateDetails(){
 let map;
 function makeMap(){
     map = new Map(listLatitude[0], listLongitude[0])
-    map.initMap
-    let script = document.createElement('script')
-    //setting src html tag equal to my google API Call
-    // fetch("https://mapping-the-matrix.onrender.com/goog").then(res => {
-    fetch("http://localhost:5001/goog").then(res => {
-        return res.text()
-    }).then(key => {
-        // console.log(key)
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=map.initMap`
-    })
-    //setting async true on our HTML element
-    script.async = true
-    //adding html element to our head section of our HTML document
-    document.head.appendChild(script)
+    map.loadMapsApi();
+    // map.initMap
+    // let script = document.createElement('script')
+    // //setting src html tag equal to my google API Call
+    // // fetch("https://mapping-the-matrix.onrender.com/goog").then(res => {
+    // fetch("http://localhost:5001/goog")
+    //     .then(res => {
+    //     return res.text()
+    //     })
+    //     .then(key => {
+    //     // console.log(key)
+    //         script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=map.initMap`
+    //     })
+    // //setting async true on our HTML element
+    // script.async = true
+    // //adding html element to our head section of our HTML document
+    // document.head.appendChild(script)
     //setting map on the window
     window.map = map
 }
