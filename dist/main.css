@@ -1,13 +1,25 @@
+/*!******************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/welcome.css ***!
+  \******************************************************************************************************/
+.welcome-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+}
+
+.welcome-container-item{
+    z-index: 5;
+}
+
 #mapping {
     color:  white;
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 250px;
+    margin: 0% 0% 0.2em 0%;
 }
 
 
@@ -17,60 +29,73 @@
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px rgb(71, 163, 71), 0 0 20px rgb(71, 163, 71), 0 0 25px rgb(71, 163, 71), 0 0 30px rgb(71, 163, 71), 0 0 35px rgb(71, 163, 71);
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    z-index: 2;
-    display: flex;
     justify-content: center;
-    position: relative;
-    top: 250px;
+    margin: 0% 0% 0.2em 0%;
 }
 
 #intro { 
     color:  white;
-    z-index: 2;
     text-align: center;
     font-family: 'Source Serif Pro',serif;
     font-size: 25px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 270px;
+    margin: 0% 0% 3em 0%;
+    width: 45%;
 }
+
 
 #get-started {
-	z-index: 2;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 300px;
-}
-
-#get-started > input {
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
-#get-started > input:hover {
+
+#get-started:hover {
     border-radius: 12px;
     background-color: black;
     color: white;
     border: solid green;
     font-family: 'Roboto', sans-serif;
 }
+/*!****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/enter-destination.css ***!
+  \****************************************************************************************************************/
+.destinations{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+}
+
+.enter-destination{
+    z-index: 2;
+}
+
+#destination-instructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-top: 20vh; */
+}
+
+
 #destination-heading{
     color:  white;
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    top: 25%;
+    margin: 0% 0% 0.2em 0%;
+    /* top: 25%;
     left: 50%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
+    position: absolute; */
+    /* z-index: 2; */
+    /* transform: translate(-50%, -50%); */
 }
 
 #domain-name{
@@ -78,34 +103,34 @@
     text-align: center;
     font-family: 'Source Serif Pro',serif;
     font-size: 25px;
-    top: 30%;
+    margin: 0% 0% 10.5em 0%;
+    width: 75%;
+    /* top: 30%;
     left: 50%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
+    position: absolute; */
+    /* z-index: 2; */
+    /* transform: translate(-50%, -50%); */
 }
 
+#get-destination{
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 24em;
+}
 
 #domain {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    z-index: 5;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
 #domain:focus {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    z-index: 5;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: black;
     color: white;
@@ -115,30 +140,60 @@
 }
 
 #domain-submit{
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin-left: 10em;
 }
 
 #domain-submit:hover {
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: black;
     color: white;
     border: solid green;
     font-family: 'Roboto', sans-serif;
+}
+
+.macbook-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.macbook {
+    /* top: 52%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    position: absolute;
+    transform: translate(-50%, -50%); */
+    z-index: 1;
+    margin-top: -42.5vh;
+  }
+
+/*!******************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/destination-details.css ***!
+  \******************************************************************************************************************/
+.destination-details{
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 27%;
+    width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -147,34 +202,26 @@
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    top: 25%;
-    left: 50%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
+    margin: 0% 0% 2.2em 0%;
+    z-index: 3;
 }
 
+#next-destination{
+    z-index: 3;
+    padding-left: 56em;
+}
 
 #next-button {
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
 #next-button:hover {
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: black;
     color: white;
@@ -182,6 +229,74 @@
     font-family: 'Roboto', sans-serif;
 }
 
-html body{height:100%;width:100%;margin:0;padding:0;background-color:#1f335e}canvas{background-color:#1f335e;width:100%;height:100%;position:absolute}.hidden{display:none}#macbook{top:52%;left:50%;height:auto;width:auto;position:absolute;transform:translate(-50%, -50%);z-index:2}#map{height:32%;width:27%;z-index:2;margin:auto;align-items:center;top:51.5%;left:50.3%;position:absolute;transform:translate(-50%, -50%)}#github{z-index:2;position:absolute;left:85%;top:2.8%;height:3.5%;width:2%}#linkedin{z-index:2;position:absolute;height:3%;width:2%;left:90%;top:3%}
+#map {
+    height: 436px;
+    width: 678px;
+    align-items: center;
+    position: absolute;
+    border-radius: 8px;
+    z-index: 2;
+    margin: 107px 0px 0px 14px;
+}
 
-/*# sourceMappingURL=main.css.map*/
+.spinner {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*!************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/final-details.css ***!
+  \************************************************************************************************************/
+
+/*!*****************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./src/styles/header.css ***!
+  \*****************************************************************************************************/
+#nav-links{
+    display: flex;
+    height: 5vh;
+    width: auto;
+    justify-content:flex-end;
+
+}
+
+.link {
+    z-index: 2;
+    margin-top: 2vh;
+    margin-right: 8vh;
+}
+
+#github{
+    height: 100%;
+    width: 100%;
+}
+  
+#linkedin{
+    height: 100%;
+    width: 100%;
+}
+/*!************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
+  \************************************************************************************************************************************/
+html body {
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: black;
+}
+
+.hidden {
+  display: none;
+}

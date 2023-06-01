@@ -5,6 +5,7 @@ import { async } from "regenerator-runtime";
 
 //Sets getStarted to the get-started HTML elements
 const getStarted = document.getElementById("get-started")
+const macbook = document.getElementById("macbook-container")
 
 //Listens for a click on the get-started button
 //To summ. this hides the homepage and shows the enter destination container
@@ -15,8 +16,6 @@ getStarted.addEventListener('click', (event) => {
     const welcomePage = document.getElementById("welcome-container")
     //saves the HTNL container destinations
     const enterDestination = document.getElementById("destinations")
-    //saves the HTML container macbook-container
-    const macbook = document.getElementById("macbook-container")
     //Adds hidden to the HTML container 
     welcomePage.classList.add('hidden')
     //Rmoeves hidden from the HTML container destination
@@ -27,18 +26,26 @@ getStarted.addEventListener('click', (event) => {
 
 
 const letsGo = document.getElementById("domain-submit")
-let domainInput;
 
 //Summarize, this function waits for this for lets go to be clicked
 //Hides HTML elements, shows the destinations details container
 //Gathers user input and passes it to routes function
+const spinner = document.getElementById("spinner")
+
 letsGo.addEventListener('click', (event) => {
+    const domainInput = document.getElementById("domain").value
+    if (domainInput === ""){
+        alert("Please enter a domain name, i.e. google.com, facebook.com, twitter.com, etc.")
+        return
+    }
     event.preventDefault();
     const enterDestination = document.getElementById("enter-destination")
-    const destinationDetails = document.getElementById("destination-details")
+    // const destinationDetails = document.getElementById("destination-details")
     enterDestination.classList.add('hidden')
-    destinationDetails.classList.remove('hidden')
-    domainInput = document.getElementById("domain").value
+    macbook.classList.add('hidden')
+    spinner.classList.remove('hidden')
+    // destinationDetails.classList.remove('hidden')
+    // domainInput = document.getElementById("domain").value
     
     // console.log(domainInput)
     routes(domainInput)
@@ -49,7 +56,27 @@ letsGo.addEventListener('click', (event) => {
 //makes a new traceroute instance
 const traceRoute = new Traceroute
 //array of collected IP from the routes function
+let ipTest = ['0.0.0.0', '0.0.0.0', 'ae2.3612.edge6.Washington12.level3.net', '4.68.38.6', '129.134.99.222', '173.252.67.63']
 let ip_collection = []
+
+
+const hasAlphaCharacters = function(ip){
+    if (ip.match(/[a-z]/i)){
+        return true
+    }
+}
+
+const validIP = function(ip){
+    if (ip === "0.0.0.0" || ip === "*") {
+        return false
+    } else if (hasAlphaCharacters(ip)){
+        return false
+    } else {
+        return true
+    }
+}
+
+
 
 //Summarize, takes domain input from the Lets go event listener
 //calls the class function getRoute and passes the domain input
@@ -60,14 +87,22 @@ const routes = function(domain){
     route.then((data) => {
         // console.log(data.response.hops, "hops console log")
         for (let number in data.response.hops) {
-            if (data.response.hops[number].ip !== "0.0.0.0" && data.response.hops[number].ip !== "*") {
+            if (validIP(data.response.hops[number].ip)) {
                 ip_collection.push(data.response.hops[number].ip)
-                // console.log(ip_collection)
             }
         }
         locateDetails()
     })    
 };
+
+// const routes = function(domain){
+//     for (let i=0; i < ipTest.length; i++){
+//         if (validIP(ipTest[i])){
+//             ip_collection.push(ipTest[i])
+//         }
+//     }
+//     locateDetails()
+// }
 
 
 // window.ip_collection = ip_collection
@@ -86,28 +121,38 @@ let listLatitude = []
 //iterates through array of collected IPs
 //due to API restrictions each API call from getLocation
 //must wait one second per request
-//adds API data into an array
+//adds API data into an 
+
 function locateDetails(){
+    const destinationDetails = document.getElementById("destination-details")
     for (let i=0 ; i < ip_collection.length; i++){
-        setTimeout(() => {
+        // setTimeout(() => {
             let geolocation = locate.getLocation(ip_collection[i])
             geolocation.then((data) => {
-                if (!listLongitude.includes(data.longitude)){
-                    listCities.push(data.city)
-                    listLongitude.push(data.longitude)
-                    listLatitude.push(data.latitude)
-                    // console.log(data.city)
-                    // console.log(data.latitude)
-                    // console.log(data.longitude)
-                    // console.log(data.ip_address)
-                    // console.log(data)
-                    if ( i === 0 ){
+                console.log(data)
+                console.log(data.loc)
+                let location = data.loc.split(',')
+                listCities.push(data.city)
+                listLatitude.push(parseFloat(location[0]))
+                listLongitude.push(parseFloat(location[1]))
+                console.log(location)
+                
+                // if (!listLongitude.includes(data.longitude)){
+                //     listCities.push(data.city)
+                //     listLongitude.push(data.longitude)
+                //     listLatitude.push(data.latitude)
+                //     console.log(ip_collection)
+                //     console.log(listCities)
+                    if ( listCities.length === ip_collection.length ){
+                        spinner.classList.add('hidden')
+                        destinationDetails.classList.remove('hidden')
+                        macbook.classList.remove('hidden')
                         destinationH1.innerHTML = `You've arrive at ${listCities[0]}`
                         makeMap()
                     }
-                }
+                // }
             })
-        },i * 1500)
+        // },i * 1500)
     }
 } 
 
@@ -128,7 +173,8 @@ function makeMap(){
     map.initMap
     let script = document.createElement('script')
     //setting src html tag equal to my google API Call
-    fetch("https://mapping-the-matrix.onrender.com/goog").then(res => {
+    // fetch("https://mapping-the-matrix.onrender.com/goog").then(res => {
+    fetch("http://localhost:5001/goog").then(res => {
         return res.text()
     }).then(key => {
         // console.log(key)

@@ -1,0 +1,23 @@
+#nav-links{
+    display: flex;
+    height: 5vh;
+    width: auto;
+    justify-content:flex-end;
+
+}
+
+.link {
+    z-index: 2;
+    margin-top: 2vh;
+    margin-right: 8vh;
+}
+
+#github{
+    height: 100%;
+    width: 100%;
+}
+  
+#linkedin{
+    height: 100%;
+    width: 100%;
+}

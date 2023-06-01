@@ -11,82 +11,56 @@
     <script src="./dist/main.js" defer></script>
 </head>
 <body>
-    
-    <div>
-        <a href="https://github.com/bann-dito"><img id="github"src="./assets/images/github.png"></a>
-        <a href="https://www.linkedin.com/in/eduardobacsierra/" ><img id="linkedin"src="./assets/images/linkedin.png"></a>
-    </div>
-    
     <canvas id="canvas"></canvas>
-    <div id="welcome-container" class="">
-        <h1 id="mapping">Mapping The</h1>
-        <h1 id="matrix">MATRIX</h1>
-        <p id="intro"> 
+    
+    <header id="nav-links">
+        <a class="link" href="https://github.com/bann-dito" target="_blank"><img id="github"src="./assets/images/github.png"></a>
+        <a class="link" href="https://www.linkedin.com/in/eduardobacsierra/" target="_blank" ><img id="linkedin"src="./assets/images/linkedin.png"></a>
+    </header>
+    
+    <div id="welcome-container" class="welcome-container">
+        <h1 id="mapping" class="welcome-container-item">Mapping The</h1>
+        <h1 id="matrix" class="welcome-container-item">MATRIX</h1>
+        <p id="intro" class="welcome-container-item"> 
             Welcome to Mapping The Matrix. This demo will take you on a journey of how our 
             computers travel across the internet and arrive at its final destination.
         </p>
         
-        <form id="get-started">
-            <input type="submit" value="Get Started">
+        <form class="welcome-container-item">
+            <input id="get-started" type="submit" value="Get Started">
         </form>
-        
     </div>
 
-    <div id="macbook-container" class="hidden">
-        <img src="./assets/images/macbook-vector-4515471_960_720.webp" id="macbook" alt="">
-    </div>
-
-    <div id="destinations" class="hidden">
-        
-        <div id="enter-destination" class="">
+    
+    <div id="destinations" class="destinations hidden">
+        <div id="enter-destination" class="enter-destination ">
             <div id="destination-instructions">
-              <h1 id="destination-heading"> Lets begin our travel </h1>
-              <p id="domain-name">
-                Enter the domain name below
-              </p>
-              <form id="get-destination" action="">
-                <label>
-                  <input id="domain" type="text" value="">
-                </label>
-                <input id="domain-submit" type="submit" value="Lets Go!">
-              </form>
-
-              <div id="macbook-container" class="">
-            </div>
-            
+                <h1 id="destination-heading"> Lets begin our travel </h1>
+                <p id="domain-name">
+                    Enter a domain name below to begin your journey of mapping the matrix.
+                </p>
+                <form id="get-destination" action="">
+                    <input id="domain" type="text" placeholder="ex. facebook.com" required>
+                    <input id="domain-submit" type="submit" value="Lets Go!">
+                </form>
             </div>
         </div>
-    
 
-          
-          <div id="view-details">
-              <div id="destination-details" class="hidden">
-                  
-                
+        <div id="spinner" class="spinner hidden"></div>
+        
+        <div id="destination-details" class="destination-details hidden">
+            <div class="view-details">
                 <h1 id="destination"> </h1>
-                
-                
-                <div id="maps-container" class="">
-                    <div id="map"></div>
-                </div>
-                
+                <div id="map"></div>
                 <form id="next-destination" action="">
                     <input id="next-button" type="submit" value="Next">
                 </form>
             </div>
         </div>
-        
-        
-        
-        
-        
     </div>
-    
-    
-    
-
-
-
+    <div id="macbook-container" class="macbook-container hidden">
+        <img src="./assets/images/macbook-vector-4515471_960_720.webp" class="macbook" alt="">
+    </div>
 
 
 

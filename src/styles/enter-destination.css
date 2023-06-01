@@ -1,13 +1,35 @@
+.destinations{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+}
+
+.enter-destination{
+    z-index: 2;
+}
+
+#destination-instructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-top: 20vh; */
+}
+
+
 #destination-heading{
     color:  white;
     font-size: 68px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    top: 25%;
+    margin: 0% 0% 0.2em 0%;
+    /* top: 25%;
     left: 50%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
+    position: absolute; */
+    /* z-index: 2; */
+    /* transform: translate(-50%, -50%); */
 }
 
 #domain-name{
@@ -15,34 +37,34 @@
     text-align: center;
     font-family: 'Source Serif Pro',serif;
     font-size: 25px;
-    top: 30%;
+    margin: 0% 0% 10.5em 0%;
+    width: 75%;
+    /* top: 30%;
     left: 50%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
+    position: absolute; */
+    /* z-index: 2; */
+    /* transform: translate(-50%, -50%); */
 }
 
+#get-destination{
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 24em;
+}
 
 #domain {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    z-index: 5;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
 
 #domain:focus {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    z-index: 5;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: black;
     color: white;
@@ -52,25 +74,17 @@
 }
 
 #domain-submit{
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: white;
     color: black;
     border: solid green;
     padding: 10px 15px;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin-left: 10em;
 }
 
 #domain-submit:hover {
-    top: 50%;
-    left: 67%;
-    position: absolute;
-    z-index: 2;
-    transform: translate(-50%, -50%);
     border-radius: 12px;
     background-color: black;
     color: white;
@@ -78,3 +92,19 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.macbook-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.macbook {
+    /* top: 52%;
+    left: 50%;
+    height: auto;
+    width: auto;
+    position: absolute;
+    transform: translate(-50%, -50%); */
+    z-index: 1;
+    margin-top: -42.5vh;
+  }

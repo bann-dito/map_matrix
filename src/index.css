@@ -2,66 +2,22 @@
 @import "./styles/enter-destination.css";
 @import "./styles/destination-details.css";
 @import "./styles/final-details.css";
+@import "./styles/header.css";
 
 html
 body {
   height: 100%;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(31, 51, 94);
 }
 
 canvas {
-  background-color: rgb(31, 51, 94);
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
+  background-color: black;
 }
 
 .hidden {
   display: none;
-}
-
-
-#macbook {
-  top: 52%;
-  left: 50%;
-  height: auto;
-  width: auto;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-#map {
-  height: 32%;
-  width: 27%;
-  z-index: 2;
-  margin: auto;
-  align-items: center;
-  top: 51.5%;
-  left: 50.3%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-}
-
-
-#github{
-  z-index: 2;
-  position: absolute;
-  left: 85%;
-  top: 2.8%;
-  height: 3.5%;
-  width: 2%;
-}
-
-#linkedin{
-  z-index: 2;
-  position: absolute;
-  height: 3%;
-  width: 2%;
-  left: 90%;
-  top: 3%;
 }
 
